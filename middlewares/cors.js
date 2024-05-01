@@ -6,4 +6,12 @@ function cors(req, res, next) {
     }
 
     next();
-}
+};
+
+const allowedCors = [
+    'https://practicum.yandex.ru',
+    'http://practicum.yandex.ru',
+    'localhost:3000'
+];
+
+module.exports = cors;
