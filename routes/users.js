@@ -1,5 +1,8 @@
-const usersRouter = require("express").Router();
+const usersRouter = require('express').Router();
 
-usersRouter.get("/users", (req, res) => { });
+const sendAllUsers = require('../controllers/users');
+const findAllUsers = require('../middlewares/users');
+
+usersRouter.get('/users', findAllUsers, sendAllUsers);
 
 module.exports = usersRouter;
