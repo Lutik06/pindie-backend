@@ -23,12 +23,10 @@ const gameSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-
     users: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: userModel,
     }],
-
     categories: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: categoryModel,
