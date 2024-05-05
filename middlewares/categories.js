@@ -36,7 +36,7 @@ const createCategory = async (req, res, next) => {
         next();
     } catch (error) {
         res.setHeader("Content-Type", "application/json");
-        res.status(400).send(JSON.stringify({ message: "Error creating category" }));
+        res.status(400).send(JSON.stringify({ message: "Ошибка создания категории" }));
     }
 };
 
@@ -70,6 +70,15 @@ const deleteCategory = async (req, res, next) => {
     }
 };
 
+const checkIfCategoriesAvaliable = async (req, res, next) => {
+    if (!req.body.categories || req.body.categories.length === 0) {
+        res.setHeader("Content-Type", "application/json");
+        res.status(400).send(JSON.stringify({ message: "Выберите хотя бы одну категорию" }));
+    } else {
+        next();
+    }
+};
+
 module.exports = {
     findAllCategories,
     findCategoryById,
@@ -78,4 +87,5 @@ module.exports = {
     checkEmptyName,
     deleteCategory,
     checkIsCategoryExists,
+    checkIfCategoriesAvaliable,
 }
