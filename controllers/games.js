@@ -8,7 +8,7 @@ const sendCreatedGame = (req, res) => {
     res.end(JSON.stringify(req.game));
 };
 
-const sendUpdatedGame = (req, res) => {
+const sendGameUpdated = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(req.game));
 };
@@ -22,6 +22,6 @@ const sendGameDeleted = (req, res) => {
 module.exports = {
     sendAllGames,
     sendCreatedGame,
-    sendUpdatedGame,
+    sendGameUpdated,
     sendGameDeleted,
 };
