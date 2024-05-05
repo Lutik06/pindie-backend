@@ -9,6 +9,19 @@ const findAllGames = async (req, res, next) => {
     next();
 };
 
+const findGameById = async (req, res, next) => {
+    try {
+        req.game = await games
+            .findById(req.params.id)
+            .populate("categories")
+            .populate("users")
+        next();
+    } catch (error) {
+        res.setHeader("Content-Type", "application/json");
+        res.status(404).send({ message: "Игра не найдена" });
+    }
+};
+
 const createGame = async (req, res, next) => {
     console.log("POST /games");
     try {
@@ -21,7 +34,36 @@ const createGame = async (req, res, next) => {
     }
 };
 
+const updateGame = async (req, res, next) => {
+    console.log("PUT /games/:id");
+    try {
+        console.log(req.body);
+        req.game = await games.findByIdAndUpdate(req.params.id, req.body);
+        next();
+    } catch (error) {
+        res.setHeader("Content-Type", "application/json");
+        res.status(400).send({ message: "Ошибка обновления игры" });
+    }
+};
+
+const checkEmptyFields = async (req, res, next) => {
+    if (
+        !req.body.title ||
+        !req.body.description ||
+        !req.body.image ||
+        !req.body.link ||
+        !req.body.developer
+    ) {
+        res.status(400).send({ message: "Заполните все поля" });
+    } else {
+        next();
+    }
+};
+
 module.exports = {
     findAllGames,
     createGame,
+    findGameById,
+    updateGame,
+    checkEmptyFields,
 };

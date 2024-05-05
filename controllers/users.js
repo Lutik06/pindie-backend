@@ -13,8 +13,14 @@ const sendCreatedUser = (req, res) => {
     res.end(JSON.stringify(req.user));
 };
 
+const sendUpdatedUser = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify(req.user));
+};
+
 module.exports = {
     sendAllUsers,
     sendUserById,
-    sendCreatedUser
+    sendCreatedUser,
+    sendUpdatedUser,
 };

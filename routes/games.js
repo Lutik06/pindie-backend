@@ -3,14 +3,18 @@ const gamesRouter = require('express').Router();
 const {
     findAllGames,
     createGame,
+    updateGame,
+    findGameById,
+    checkEmptyFields,
 } = require('../middlewares/games');
 const {
     sendAllGames,
     sendCreatedGame,
+    sendUpdatedGame,
 } = require('../controllers/games');
 
 gamesRouter.get('/games', findAllGames, sendAllGames);
-
-gamesRouter.post('/games', createGame, sendCreatedGame);
+gamesRouter.post('/games', checkEmptyFields, createGame, sendCreatedGame);
+gamesRouter.put('/games/:id', checkEmptyFields, updateGame, sendUpdatedGame, findGameById);
 
 module.exports = gamesRouter;
