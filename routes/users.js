@@ -1,11 +1,11 @@
 const usersRouter = require('express').Router();
-const sendMe = require("../controllers/users.js");
 
 const { sendAllUsers,
     sendUserById,
     sendCreatedUser,
     sendUpdatedUser,
     sendUserDeleted,
+    sendMe,
 } = require('../controllers/users');
 const { findAllUsers,
     checkIsUserExists,
