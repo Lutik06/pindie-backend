@@ -1,4 +1,5 @@
 const usersRouter = require('express').Router();
+const sendMe = require("../controllers/users.js");
 
 const { sendAllUsers,
     sendUserById,
