@@ -5,6 +5,7 @@ const {
     createGame,
     updateGame,
     findGameById,
+    checkIsVoteRequest,
     checkEmptyFields,
     deleteGame,
     checkIfUsersAreSafe,
@@ -21,7 +22,7 @@ const { checkAuth } = require("../middlewares/auth.js");
 
 gamesRouter.get('/games', findAllGames, sendAllGames);
 gamesRouter.post('/games', checkEmptyFields, findAllGames, createGame, checkIsGameExists, checkIfCategoriesAvaliable, checkAuth, sendCreatedGame);
-gamesRouter.put('/games/:id', checkIfCategoriesAvaliable, /* checkIsVoteRequest,*/ checkAuth, checkIfUsersAreSafe, checkEmptyFields, updateGame, sendGameUpdated, findGameById, checkIsGameExists);
+gamesRouter.put('/games/:id', checkIfCategoriesAvaliable, checkIsVoteRequest, checkAuth, checkIfUsersAreSafe, checkEmptyFields, updateGame, sendGameUpdated, findGameById, checkIsGameExists);
 gamesRouter.delete('/games/:id', deleteGame, checkAuth, sendGameDeleted);
 
 module.exports = gamesRouter;
