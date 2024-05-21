@@ -3,7 +3,7 @@ const usersRouter = require('express').Router();
 const { sendAllUsers,
     sendUserById,
     sendCreatedUser,
-    sendUpdatedUser,
+    sendUserUpdated,
     sendUserDeleted,
     sendMe,
 } = require('../controllers/users');
@@ -46,9 +46,9 @@ usersRouter.post(
 usersRouter.put(
     '/users/:id',
     checkEmptyNameAndEmail,
-    sendUpdatedUser,
+    sendUserUpdated,
     checkAuth,
-    updateUser
+    updateUser,
 );
 
 usersRouter.delete(
