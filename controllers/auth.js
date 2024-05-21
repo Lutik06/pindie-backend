@@ -23,11 +23,6 @@ const login = (req, res) => {
                     jwt: token
                 });
         })
-        .then((user) => {
-            res
-                .status(200)
-                .send({ _id: user._id, username: user.username, email: user.email });
-        })
         .catch(error => {
             res.status(401).send({ message: error.message });
         });
